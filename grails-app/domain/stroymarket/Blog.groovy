@@ -4,15 +4,16 @@ class Blog {
     String postName;
     String postName2;
     Date   pubDate;
-    byte[] img;
+//    byte[] img;
     String prePost;
-    String post;
-    List<Comment> comments;
-
+    String postContent;
+    List<Comment> commentList;
 
     static constraints = {
-        postName (blank: false);
-        pubDate (blank: false);
-
+        postName(blank: false)
+        postName2(nullable: true)
+        pubDate(nullable: false)
+        prePost(nullable: false)
+        postContent(nullable: true)
     }
 }

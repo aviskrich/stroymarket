@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="java.text.DateFormat" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main"/>
@@ -22,36 +22,22 @@
     <div class="row">
 
         <div class="col-lg-8">
+            <g:each in="${blogs}" var="blog" status="i">
+                <h1><a href="${createLink([action: "show", params: [blogid: blog.getId()]])}">${blog.postName}</a></h1>
 
-            <h1><a href="#">Блог первый</a></h1>
+                <p class="lead">автор: <a href="#">Иванов Иван Иванович</a></p>
+                <hr>
 
-            <p class="lead">автор: <a href="#">Иванов Иван Иванович</a></p>
-            <hr>
+                <p><i class="icon-time"></i> за ${blog.pubDate} </p>
+                <hr>
+                <a href="#"><img src="http://placehold.it/900x300" class="img-responsive"></a>
+                <hr>
 
-            <p><i class="icon-time"></i> за 30 Октября 2013 14:30 </p>
-            <hr>
-            <a href="#"><img src="http://placehold.it/900x300" class="img-responsive"></a>
-            <hr>
+                <p>${blog.prePost}</p>
+                <a class="btn btn-primary" href="${createLink([action: "show", params: [blogid: blog.getId()]])}">Читать далее <i class="icon-angle-right"></i></a>
 
-            <p>Краткое описание будущей статьи, которое будем хранить отдельно от всего текста</p>
-            <a class="btn btn-primary" href="#">Читать далее <i class="icon-angle-right"></i></a>
-
-            <hr>
-
-            <h1><a href="#">Еще одна статья</a></h1>
-
-            <p class="lead">автор: <a href="#">Петров Петр Петрович</a></p>
-            <hr>
-
-            <p><i class="icon-time"></i> за 29 Октября 2013 12:45 </p>
-            <hr>
-            <a href="#"><img src="http://placehold.it/900x300" class="img-responsive"></a>
-            <hr>
-
-            <p>Краткое описание будущей статьи, которое будем хранить отдельно от всего текста</p>
-            <a class="btn btn-primary" href="#">Читать далее <i class="icon-angle-right"></i></a>
-
-            <hr>
+                <hr>
+            </g:each>
 
             <ul class="pager">
                 <li class="previous"><a href="#">&larr; Предыдущие</a></li>
