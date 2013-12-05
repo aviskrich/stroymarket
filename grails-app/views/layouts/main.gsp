@@ -1,3 +1,4 @@
+<%@ page import="org.stroymarket.security.User" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="ru" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="ru" class="no-js ie7"> <![endif]-->
@@ -45,6 +46,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <sec:ifLoggedIn><li><a href="#"><i class="icon-user"></i> ${new User().getCurrentUserName().firstName}</a></li></sec:ifLoggedIn>
+                <sec:ifLoggedIn><li><g:link controller="logout">Выйти</g:link></li></sec:ifLoggedIn>
+                <sec:ifNotLoggedIn><li><g:link controller="login">Войти</g:link></li></sec:ifNotLoggedIn>
+                <sec:ifAllGranted roles="ROLE_ADMIN"><li><a href="#">Административная консоль</a> </li></sec:ifAllGranted>
+            </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">О нас</a></li>
                 <li><a href="#">Услуги</a></li>

@@ -1,5 +1,8 @@
 package stroymarket
 
+import grails.plugins.springsecurity.Secured
+
+@Secured(['ROLE_USER'])
 class BlogController {
 
     static defaultAction = "list"
@@ -10,6 +13,7 @@ class BlogController {
         return [blogs: blogs]
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show = {
         def blogId = Integer.parseInt(params.blogid);
 

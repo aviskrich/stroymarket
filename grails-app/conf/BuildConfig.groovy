@@ -52,21 +52,18 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ':spring-security-core:1.2.7'
+        runtime ':spring-security-core:1.2.7'
         compile ':mongodb:1.3.3'
+        build   ':webxml:1.4.1'
 
-        // plugins for the build system only
-        build ":tomcat:7.0.47"
+        build   ":tomcat:7.0.47"
 
-        // plugins for the compile step
-        compile ":scaffolding:2.0.1"
-        compile ':cache:1.1.1'
-
-        runtime ":jquery:1.10.2"
-        runtime ":resources:1.2.1"
+        compile ":jquery:1.10.2"
+        compile ":resources:1.2.1"
         // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0.1"
-        //runtime ":cached-resources:1.1"
-        //runtime ":yui-minify-resources:0.1.5"
+        compile ":zipped-resources:1.0"
+        compile ":cached-resources:1.0"
+        compile ":cache-headers:1.1.5"
+        runtime ":yui-minify-resources:0.1.5"
     }
 }

@@ -28,10 +28,10 @@ environments {
     production {
         grails {
             mongo {
-                host = "mongodb-stroymarket.jelastic.regruhosting.ru"
+                host = "mongodb-stroymarket.jelasticloud.com"
                 port = 27017
                 username = "admin"
-                password = "F9cqtC7zVQ"
+                password = "jkThv9nAoc"
                 databaseName = "stroymarket"
             }
 
