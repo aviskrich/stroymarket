@@ -4,7 +4,7 @@ class Blog {
     String postName;
     String postName2;
     Date   pubDate;
-//    byte[] img;
+    String imgSrc;
     String prePost;
     String postContent;
     List<Comment> commentList;

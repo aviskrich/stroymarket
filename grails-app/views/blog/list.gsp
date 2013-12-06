@@ -30,7 +30,7 @@
 
                 <p><i class="icon-time"></i> за ${blog.pubDate} </p>
                 <hr>
-                <a href="#"><img src="http://placehold.it/900x300" class="img-responsive"></a>
+                <a href="#"><img src="${blog.imgSrc}" class="img-responsive"></a>
                 <hr>
 
                 <p>${blog.prePost}</p>

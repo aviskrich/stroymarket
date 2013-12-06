@@ -5,6 +5,7 @@
 </head>
 
 <body>
+<%@page defaultCodec="html" %>
 <div class="container">
 
     <div class="row">
@@ -25,8 +26,8 @@
 
         <div class="col-lg-8">
             <p>${blog.prePost}</p>
-            <a href="#"><img src="http://placehold.it/900x300" class="img-responsive"></a>
-            <p>Будет контент поста: ${blog.postContent}</p>
+            <a href="#"><img src="${blog.imgSrc}" class="img-responsive"></a>
+            <p>${raw(blog.postContent)}</p>
 
             <p class="muted"> <i class="icon-twitter"></i>автор: <a href="#">Иванов Иван Иванович</a></p>
             <p class="muted"> <i class="icon-time"></i>${blog.pubDate}</p>

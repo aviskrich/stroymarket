@@ -2,11 +2,12 @@ package stroymarket
 
 import grails.plugins.springsecurity.Secured
 
-@Secured(['ROLE_USER'])
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class BlogController {
 
     static defaultAction = "list"
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list = {
         def blogs = Blog.list([sort: "pubDate", order: "desc"])
 

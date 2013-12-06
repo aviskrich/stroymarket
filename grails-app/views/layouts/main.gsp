@@ -47,7 +47,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <sec:ifLoggedIn><li><a href="#"><i class="icon-user"></i> ${new User().getCurrentUserName().firstName}</a></li></sec:ifLoggedIn>
+                <sec:ifLoggedIn><li><a href="#"><i class="icon-user"></i> ${new User().getCurrentUserName().username}</a></li></sec:ifLoggedIn>
                 <sec:ifLoggedIn><li><g:link controller="logout">Выйти</g:link></li></sec:ifLoggedIn>
                 <sec:ifNotLoggedIn><li><g:link controller="login">Войти</g:link></li></sec:ifNotLoggedIn>
                 <sec:ifAllGranted roles="ROLE_ADMIN"><li><a href="#">Административная консоль</a> </li></sec:ifAllGranted>
