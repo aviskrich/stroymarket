@@ -16,18 +16,12 @@
 
     <title><g:layoutTitle default="Строй-Market"/></title>
 
-    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-    <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'modern-business.css')}">
-    <link rel="stylesheet" href="${resource(dir: 'font-awesome/css', file: 'font-awesome.min.css')}">
+<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
+<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 
-    <g:javascript library="jquery"/>
-
-    <g:layoutHead/>
-    <r:layoutResources/>
+<g:layoutHead/>
+<r:layoutResources/>
 </head>
 
 <body>
@@ -47,10 +41,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <sec:ifLoggedIn><li><a href="#"><i class="icon-user"></i> ${new User().getCurrentUserName().username}</a></li></sec:ifLoggedIn>
+                <sec:ifLoggedIn><li><a href="#"><i class="icon-user"></i> ${new User().getCurrentUserName().username}
+                </a></li></sec:ifLoggedIn>
                 <sec:ifLoggedIn><li><g:link controller="logout">Выйти</g:link></li></sec:ifLoggedIn>
                 <sec:ifNotLoggedIn><li><g:link controller="login">Войти</g:link></li></sec:ifNotLoggedIn>
-                <sec:ifAllGranted roles="ROLE_ADMIN"><li><a href="#">Административная консоль</a> </li></sec:ifAllGranted>
+                <sec:ifAllGranted roles="ROLE_ADMIN"><li><a href="#">Административная консоль</a>
+                </li></sec:ifAllGranted>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -65,13 +61,8 @@
                         <li><a href="#">Тест портфолио</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Статьи <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><g:link controller="blog" action="list">Список статей</g:link>
-                        <li><a href="#">Тест статьи</a></li>
-                    </ul>
-                </li>
+                <li><g:link controller="blog" action="list">Статьи</g:link></li>
+
                 <!--li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Разное <b class="caret"></b></a>
                     <ul class="dropdown-menu">

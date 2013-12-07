@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+
+    <r:require modules="application"/>
 </head>
 
 <body>
@@ -89,5 +91,7 @@
     </div>
 
 </div><!-- /.container -->
+
+<r:require modules="application"/>
 </body>
 </html>
