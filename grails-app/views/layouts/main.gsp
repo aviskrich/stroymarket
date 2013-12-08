@@ -24,7 +24,7 @@
 <r:layoutResources/>
 </head>
 
-<body>
+<body lang="ru">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -45,7 +45,7 @@
                 </a></li></sec:ifLoggedIn>
                 <sec:ifLoggedIn><li><g:link controller="logout">Выйти</g:link></li></sec:ifLoggedIn>
                 <sec:ifNotLoggedIn><li><g:link controller="login">Войти</g:link></li></sec:ifNotLoggedIn>
-                <sec:ifAllGranted roles="ROLE_ADMIN"><li><a href="#">Административная консоль</a>
+                <sec:ifAllGranted roles="ROLE_ADMIN"><li><g:link controller="admin" action="index" href="#">Административная консоль</g:link>
                 </li></sec:ifAllGranted>
             </ul>
 
@@ -77,6 +77,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
 </nav>
+
 <g:layoutBody/>
 <div class="container">
 

@@ -15,7 +15,7 @@ class BootStrap {
             Role roleUser = new Role(authority: 'ROLE_USER').save(failOnError: true)
             Role roleAdmin = new Role(authority: 'ROLE_ADMIN').save(failOnError: true)
 
-            User user = new User(username: 'user', password: 'user', enabled: true, firstName: "Пользователь", lastName: "Пользов").save(failOnError: true);
+            User user = new User(username: 'userList', password: 'userList', enabled: true, firstName: "Пользователь", lastName: "Пользов").save(failOnError: true);
             User admin = new User(username: 'admin', password: 'admin', enabled: true, firstName: "Админ", lastName: "Админов").save(failOnError: true);
 
             UserRole userRole = new UserRole(user: user, role: roleUser).save(failOnError: true)
