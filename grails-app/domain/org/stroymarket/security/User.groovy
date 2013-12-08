@@ -15,6 +15,8 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
+    transient String roles;
+
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false

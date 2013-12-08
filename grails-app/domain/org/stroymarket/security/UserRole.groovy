@@ -24,7 +24,7 @@ class UserRole implements Serializable {
 	}
 
 	static UserRole get(long userId, long roleId) {
-		find 'from UserRole where user.id=:userId and role.id=:roleId',
+		find 'from UserRole where userList.id=:userId and role.id=:roleId',
 			[userId: userId, roleId: roleId]
 	}
 
@@ -43,7 +43,7 @@ class UserRole implements Serializable {
 	}
 
 	static void removeAll(User user) {
-		executeUpdate 'DELETE FROM UserRole WHERE user=:user', [user: user]
+		executeUpdate 'DELETE FROM UserRole WHERE userList=:userList', [user: user]
 	}
 
 	static void removeAll(Role role) {
@@ -51,7 +51,7 @@ class UserRole implements Serializable {
 	}
 
 	static mapping = {
-		id composite: ['role', 'user']
+		id composite: ['role', 'userList']
 		version false
 	}
 }
