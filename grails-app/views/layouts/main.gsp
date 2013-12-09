@@ -52,13 +52,12 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">О нас</a></li>
                 <li><a href="#">Услуги</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Поставщики</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Наши работы <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Проекты домов</a></li>
                         <li><a href="#">Дизайн интерьера</a></li>
-                        <li><a href="#">Тест портфолио</a></li>
                     </ul>
                 </li>
                 <li><g:link controller="blog" action="list">Статьи</g:link></li>
