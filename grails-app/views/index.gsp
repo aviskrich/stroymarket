@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
 
-    <r:require modules="application"/>
+    <r:require modules="application, carousel, twitterBootstrap"/>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <div class="fill" style="background-image:url('img/Slide1.png');"></div>
+            <div class="fill" style="background-image:url('img/Slide1.jpg');"></div>
 
             <div class="carousel-caption">
                 <h1>Дизайн студии</h1>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="item">
-            <div class="fill" style="background-image:url('img/Slide2.png');"></div>
+            <div class="fill" style="background-image:url('img/Slide2.jpg');"></div>
 
             <div class="carousel-caption">
                 <h1>Минимализм и удобство</h1>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="item">
-            <div class="fill" style="background-image:url('img/Slide3.png');"></div>
+            <div class="fill" style="background-image:url('img/Slide3.jpg');"></div>
 
             <div class="carousel-caption">
                 <h1>Дизайн ванной комнаты</h1>
