@@ -21,7 +21,7 @@
             </div>
             <div class="form-group" id="passwordGroup">
                 <label for="username" class="col-sm-2 control-label"><g:message
-                        code="springSecurity.login.username.label"/>:</label>
+                        code="springSecurity.login.password.label"/>:</label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" id="password1" name="password1" value="" autocomplete="off">
                 </div>
@@ -30,18 +30,20 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="firstName" class="col-sm-2 control-label">Фамилия:</label>
+                <label for="firstName" class="col-sm-2 control-label">Имя:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="firstName" name="firstName" value="${user.firstName}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="lastName" class="col-sm-2 control-label">Имя:</label>
+                <label for="lastName" class="col-sm-2 control-label">Фамилия:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="lastName" name="lastName" value="${user.lastName}">
                 </div>
             </div>
-            <input style="display: none" id="userId" name="userId" value="${user.id}"/>
+
+            <input style="display: none" id="userId" name="userId" value="${user.id}">
+            <input style="display: none" id="newuser" name="newuser" value="${newuser}">
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" id="submit" class="btn btn-default"><g:message
@@ -56,7 +58,9 @@
     $(document).ready(function () {
         $(".form-control").keyup(function () {
             var passwordGroup = $("#passwordGroup");
-            if ($("#password1").val() != $("#password2").val()) {
+            if ( ($("#password1").val() != $("#password2").val())
+                    &&
+                 ($("#newuser").val()=="true" && $("#password1").val().size()<=0)) {
                 passwordGroup.removeClass("has-success");
                 passwordGroup.addClass("has-error");
                 $("#submit").addClass("disabled");

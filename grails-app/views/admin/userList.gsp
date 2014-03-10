@@ -30,11 +30,14 @@
                     <td>${user.roles}</td>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
-                    <td><g:link action="user" params="[userid: user.id]"><span class="glyphicon glyphicon-cog"></span> </g:link> </td>
+                    <td><g:link action="user" params="[userId: user.id]"><span class="glyphicon glyphicon-cog"></span> </g:link> </td>
                 </tr>
             </g:each>
             </tbody>
         </table>
+        <div class="col-sm-offset-11 col-sm-1">
+            <g:link action="createUser" class="btn btn-default">Добавить</g:link>
+        </div>
     </div>
 </div>
 

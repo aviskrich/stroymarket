@@ -23,14 +23,22 @@ class AdminController {
     }
 
     def user() {
-        def userId = Integer.parseInt(params.userid);
+        def user = params.userId != null ? User.findById(params.userId) : new User()
 
-        return [user: User.findById(userId)]
+        return [user: user, newuser: params.newuser==null?false:params.newuser]
+    }
+
+    def createUser() {
+        redirect(action: "user", params: [newuser: true])
     }
 
     def updateUser() {
-        def user = User.get(params.userId)
+        def user = params.userid != null ? User.get(params.userId) : new User()
         bindData(user, params)
-        render "${user?.firstName} ${user?.lastName}"
+        if ((params.password1 as String).size() > 0) {
+            user.setPassword(params.password1)
+        }
+        user.save()
+        redirect(action: "userList")
     }
 }
