@@ -10,36 +10,38 @@
 <tmpl:menu current="user"/>
 
 <div class="container">
-    <div class="row">
-        <g:form action='...' method='POST' class='form-horizontal' role="form">
+    <div class="row" style="margin-top: 10px">
+        <g:form action='updateUser' method='POST' class='form-horizontal' role="form" params="[user: user]">
             <div class="form-group">
                 <label for="username" class="col-sm-2 control-label"><g:message
                         code="springSecurity.login.username.label"/>:</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="username" name="j_username" value="${user.username}">
+                    <input type="text" class="form-control" id="username" name="username" value="${user.username}">
+                </div>
+            </div>
+            <div class="form-group" id="passwordGroup">
+                <label for="username" class="col-sm-2 control-label"><g:message
+                        code="springSecurity.login.username.label"/>:</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" id="password1" name="password1" value="" autocomplete="off">
+                </div>
+                <div class="col-sm-8 col-sm-offset-2" style="margin-top: 12px;">
+                    <input type="password" class="form-control" id="password2" name="password2" value="" autocomplete="off">
                 </div>
             </div>
             <div class="form-group">
                 <label for="firstName" class="col-sm-2 control-label">Фамилия:</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="firstName" name="j_password" value="${user.firstName}">
+                    <input type="text" class="form-control" id="firstName" name="firstName" value="${user.firstName}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="lastName" class="col-sm-2 control-label">Имя:</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="lastName" name="j_password" value="${user.lastName}">
+                    <input type="text" class="form-control" id="lastName" name="lastName" value="${user.lastName}">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="" id="remember_me" <g:if test="${hasCookie}">checked="checked"</g:if>/> <g:message code="springSecurity.login.remember.me.label"/>
-                        </label>
-                    </div>
-                </div>
-            </div>
+            <input style="display: none" id="userId" name="userId" value="${user.id}"/>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" id="submit" class="btn btn-default"><g:message
@@ -49,6 +51,23 @@
         </g:form>
     </div>
 </div>
+
+<script lang="javascript">
+    $(document).ready(function () {
+        $(".form-control").keyup(function () {
+            var passwordGroup = $("#passwordGroup");
+            if ($("#password1").val() != $("#password2").val()) {
+                passwordGroup.removeClass("has-success");
+                passwordGroup.addClass("has-error");
+                $("#submit").addClass("disabled");
+            } else {
+                passwordGroup.removeClass("has-error");
+                passwordGroup.addClass("has-success");
+                $("#submit").removeClass("disabled");
+            }
+        })
+    });
+</script>
 
 </body>
 </html>

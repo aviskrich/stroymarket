@@ -27,4 +27,10 @@ class AdminController {
 
         return [user: User.findById(userId)]
     }
+
+    def updateUser() {
+        def user = User.get(params.userId)
+        bindData(user, params)
+        render "${user?.firstName} ${user?.lastName}"
+    }
 }
