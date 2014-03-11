@@ -43,7 +43,7 @@ class UserRole implements Serializable {
 	}
 
 	static void removeAll(User user) {
-		executeUpdate 'DELETE FROM UserRole WHERE user=:user', [user: user]
+		findAllByUser(user).each {it.delete()}
 	}
 
 	static void removeAll(Role role) {

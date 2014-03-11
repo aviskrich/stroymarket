@@ -41,13 +41,18 @@
                     <input type="text" class="form-control" id="lastName" name="lastName" value="${user.lastName}">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-2 control-label">Группа:</label>
+                <div class="col-sm-8">
+                    <g:select class="form-control" name="roles" from="${roles}" value="${user.roles}"/>
+                </div>
+            </div>
 
             <input style="display: none" id="userId" name="userId" value="${user.id}">
             <input style="display: none" id="newuser" name="newuser" value="${newuser}">
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" id="submit" class="btn btn-default"><g:message
-                            code="springSecurity.login.button.label"/></button>
+                <div class="col-sm-offset-8 col-sm-2 text-right">
+                    <button type="submit" id="submit" class="btn btn-default">Сохранить</button>
                 </div>
             </div>
         </g:form>
@@ -58,16 +63,23 @@
     $(document).ready(function () {
         $(".form-control").keyup(function () {
             var passwordGroup = $("#passwordGroup");
-            if ( ($("#password1").val() != $("#password2").val())
-                    &&
-                 ($("#newuser").val()=="true" && $("#password1").val().size()<=0)) {
+            var password1 = $("#password1");
+            var password2 = $("#password2");
+
+            if (password1.val() != password2.val()) {
                 passwordGroup.removeClass("has-success");
                 passwordGroup.addClass("has-error");
                 $("#submit").addClass("disabled");
             } else {
-                passwordGroup.removeClass("has-error");
-                passwordGroup.addClass("has-success");
-                $("#submit").removeClass("disabled");
+                if ($("#newuser").val() == "true" && password1.val() == "") {
+                    passwordGroup.removeClass("has-success");
+                    passwordGroup.addClass("has-error");
+                    $("#submit").addClass("disabled");
+                } else {
+                    passwordGroup.removeClass("has-error");
+                    passwordGroup.addClass("has-success");
+                    $("#submit").removeClass("disabled");
+                }
             }
         })
     });

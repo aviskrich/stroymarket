@@ -11,4 +11,9 @@ class Role {
 	static constraints = {
 		authority blank: false, unique: true
 	}
+
+
+    def String toString() {
+        authority
+    }
 }
