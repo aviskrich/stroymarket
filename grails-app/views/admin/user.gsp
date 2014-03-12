@@ -1,3 +1,4 @@
+<%@ page import="org.stroymarket.security.Role" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,7 +12,7 @@
 
 <div class="container">
     <div class="row" style="margin-top: 10px">
-        <g:form action='updateUser' method='POST' class='form-horizontal' role="form" params="[user: user]">
+        <g:form action='updateUser' method='POST' class='form-horizontal' role="form">
             <div class="form-group">
                 <label for="username" class="col-sm-2 control-label"><g:message
                         code="springSecurity.login.username.label"/>:</label>
@@ -44,7 +45,17 @@
             <div class="form-group">
                 <label for="lastName" class="col-sm-2 control-label">Группа:</label>
                 <div class="col-sm-8">
-                    <g:select class="form-control" name="roles" from="${roles}" value="${user.roles}"/>
+                    <g:select class="form-control" name="roles"
+                        from="${Role.all}" value="${user?.authorities?.size()!=0?user.authorities.first()?.id:null}"
+                        optionValue="authority" optionKey="id"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-2 control-label">Доступен:</label>
+                <div class="col-sm-8">
+                    <div class="checkbox">
+                        <input type="checkbox" name="enabled" <g:if test="${user.enabled}">checked="checked"</g:if>>
+                    </div>
                 </div>
             </div>
 
@@ -56,6 +67,7 @@
                 </div>
             </div>
         </g:form>
+        %{--<div>${user}</div>--}%
     </div>
 </div>
 

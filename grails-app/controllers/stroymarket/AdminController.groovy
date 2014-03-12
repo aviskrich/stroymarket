@@ -15,19 +15,13 @@ class AdminController {
     def userList() {
         List<User> users = User.list()
 
-        for (user in users) {
-            user.roles = new String();
-            UserRole.findAllByUser(user).each { user.roles = user.roles.concat(it.role.authority) }
-        }
-
         return [users: users]
     }
 
     def user = {
-        def user = params.userId != null ? User.findById(params.userId) : new User()
-        def roles = Role.all
+        def user = params.userId != null ? User.findById(Long.parseLong(params.userId as String)) : new User()
 
-        return [user: user, newuser: params.newuser == null ? false : params.newuser, roles: roles]
+        return [user: user, newuser: params.newuser == null ? false : params.newuser]
     }
 
     def createUser() {
@@ -35,20 +29,20 @@ class AdminController {
     }
 
     def updateUser() {
-        def user = params.userid != null ? User.get(params.userId) : new User()
+        User user = params.userId != null ? User.get(params.userId) : new User()
 
-        if (params.roles != null && params.roles != user.roles) {
-            UserRole.removeAll(user)
-            UserRole.create(user, Role.create().with {authority = params.roles} as Role).save()
-        }
-
-        bindData(user, params)
+        user = bindData(user, params, ["id"])
         if ((params.password1 as String).size() > 0) {
             user.setPassword(params.password1)
         }
 
-        user.save()
-        render "${user.roles}"
-//        redirect(action: "userList")
+        user = user.id != null ? user.merge() : user.save()
+
+        if (params.roles != null && params.roles != user.getAuthoritiesAsString()) {
+            UserRole.removeAll(user)
+            user.addAuthority(Role.findById(params.roles))
+        }
+
+        redirect(action: "userList")
     }
 }

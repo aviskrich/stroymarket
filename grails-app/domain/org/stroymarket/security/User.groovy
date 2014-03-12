@@ -4,52 +4,80 @@ import grails.plugins.springsecurity.SpringSecurityService
 
 class User {
 
-	transient springSecurityService
+    transient springSecurityService
 
-	String username
-	String password
+    String username
+    String password
     String firstName
     String lastName
-	boolean enabled
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+    boolean enabled
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
 
-    transient String roles;
+    static constraints = {
+        username blank: false, unique: true
+        password blank: false
+    }
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-        roles blank: true, nullable: true
-	}
+    static mapping = {
+        password column: '`password`'
+    }
 
-	static mapping = {
-		password column: '`password`'
-	}
+    Set<Role> getAuthorities() {
+        UserRole.findAllByUser(this).collect { it.role } as Set
+    }
 
-	Set<Role> getAuthorities() {
-		UserRole.findAllByUser(this).collect { it.role } as Set
-	}
+    String getAuthoritiesAsString() {
+        StringBuilder result = new StringBuilder()
+        getAuthorities().each { result.append it.authority }
+        result.toString()
+    }
 
-	def beforeInsert() {
-		encodePassword()
-	}
+    def UserRole addAuthority(Role role) {
+        new UserRole().with {
+            user = this
+            it.role = role
+            it
+        }.save()
+    }
 
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
+    def beforeInsert() {
+        encodePassword()
+    }
 
-	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
-	}
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+    }
+
+    protected void encodePassword() {
+        password = springSecurityService.encodePassword(password)
+    }
 
     SpringSecurityService getSecrutiryService() {
-       return springSecurityService
+        return springSecurityService
     }
 
     User getCurrentUserName() {
         springSecurityService.currentUser as User
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", enabled=" + enabled +
+                ", accountExpired=" + accountExpired +
+                ", accountLocked=" + accountLocked +
+                ", passwordExpired=" + passwordExpired +
+                ", version=" + version +
+                '}';
     }
 }

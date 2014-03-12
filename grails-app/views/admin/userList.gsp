@@ -27,7 +27,7 @@
             <g:each in="${users}" var="user" status="i">
                 <tr>
                     <td>${user.username}</td>
-                    <td>${user.roles}</td>
+                    <td>${user.authoritiesAsString}</td>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td><g:link action="user" params="[userId: user.id]"><span class="glyphicon glyphicon-cog"></span> </g:link> </td>
